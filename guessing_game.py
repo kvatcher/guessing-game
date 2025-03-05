@@ -20,7 +20,7 @@ best_time = 100.0
 attempts_record = 10
 def game(lives):
     global best_time, attempts_record
-    try = 0
+    current_attempts = 0
     start = time.perf_counter()
     number = random.randint(1,100)
     print("Guess the number!")
@@ -37,12 +37,12 @@ def game(lives):
             if duration < best_time:
                 print(f"New time record!. Previous record was {best_time}.")
                 best_time = duration
-            if try < attempts_record:
-                print(f"New attempts records with {try} attempts to win! Previous best was {attempts_record}.")
-                attempts_record = try
+            if current_attempts < attempts_record:
+                print(f"New attempts records with {current_attempts} attempts to win! Previous best was {attempts_record}.")
+                attempts_record = current_attempts
             break
         elif guess > number:
-            try+=1
+            current_attempts+=1
             print("Try again. It's a number lower than what you guessed")
             if guess-number>50:
                 print("You are VERY far from guessing!")
@@ -50,7 +50,7 @@ def game(lives):
                 print("Getting closer!")
             lives-=1
         elif guess < number:
-            try+=1
+            current_attempts+=1
             print("Try again. It's a number greater than what you guessed")
             if number - guess > 50:
                 print("You are VERY far from guessing!")
